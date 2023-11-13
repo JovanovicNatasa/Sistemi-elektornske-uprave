@@ -9,10 +9,7 @@ region: string;
 pol: string;
 rbr: number;
 }
-/*
-const ELEMENT_DATA: PeriodicElement[] = [
-  {date: this.extractDate(jmbgValue), region: 'Hydrogen', pol: 1.0079, rbr: 'H'}
-];*/
+
 
 @Component({
   selector: 'app-validation-results',
@@ -66,10 +63,10 @@ export class ValidationResultsComponent {
 extractRegion(jmbg: string): string {
   const value = jmbg;
 
-    // Extract RR segment
+
     const rr = +value.slice(7, 9);
 
-    // Define region mappings
+
     const regionMappings: { [key: number]: string } = {
       1: 'Stranci u BiH',
       2: 'Stranci u Crnoj Gori',
@@ -138,14 +135,14 @@ extractRegion(jmbg: string): string {
     };
 
 
-      // Return the corresponding region
+
       return String(regionMappings[rr]);
 
 }
 extractGender(jmbg: string): string {
   const value = jmbg;
 
-  // Extract BBB segment
+
   const BBB = +value.slice(9, 12);
 
   if (BBB >= 0 && BBB <= 499) {
@@ -157,13 +154,13 @@ extractGender(jmbg: string): string {
 extractNumber(jmbg: string): number {
   const value = jmbg;
 
-  // Extract BB segment
+
   const BB = +value.slice(10, 12);
 
   if (BB === 0) {
     return 1;
   } else {
-    // Increment BB by 1 to get the desired result
+    
     return BB + 1;
   }
 }

@@ -12,7 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { AppComponent } from '../app.component';
 
 
-// Update the jmbgLengthValidator function
+
 function jmbgLengthValidator(control: AbstractControl): ValidationErrors | null {
   const value = control.value as string;
   const numericPattern = /^[0-9]+$/;
@@ -20,7 +20,7 @@ function jmbgLengthValidator(control: AbstractControl): ValidationErrors | null 
   if (value && value.length === 13 && numericPattern.test(value)) {
     return null; // Valid
   } else {
-    return { jmbgLengthError: true }; // Invalid, use a custom error key
+    return { jmbgLengthError: true };
   }
 }
 
@@ -37,7 +37,7 @@ function validateDateOfBirth(control: AbstractControl): ValidationErrors | null 
       return { invalidDateFormat: true }; // Invalid format
     }
 
-    // Check if the date is valid
+
     const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
     const daysInMonth = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -68,28 +68,28 @@ function validateControlDigit(control: AbstractControl): ValidationErrors | null
   const value = control.value as string;
 
   if (value) {
-    // Extract individual digits
+
     const digits = value.split('').map(Number);
 
-    // Check if there are exactly 13 digits
+
     if (digits.length !== 13) {
       return { invalidJmbgLength: true };
     }
 
-    // Calculate the control digit
+
     const weights = [7, 6, 5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
     const sum = digits.slice(0, 12).reduce((acc, digit, index) => acc + digit * weights[index], 0);
     const controlDigit = (11 - (sum % 11)) % 11;
 
-    // Check if the calculated control digit matches the last digit of JMBG
+
     if (digits[12] === controlDigit || (controlDigit > 9 && digits[12] === 0)) {
       return null; // Valid
     } else {
-      return { invalidControlDigit: true }; // Invalid control digit
+      return { invalidControlDigit: true };
     }
   }
 
-  return null; // Valid (if value is empty)
+  return null;
 }
 
 @Component({
@@ -123,7 +123,7 @@ export class ValidationComponent implements OnInit{
         this.sharedService.setJmbgValue(jmbgValue);
         this.router.navigate(['/rezultati']);
       } else {
-        // Handle the case where jmbgValue is null (optional)
+
         console.error('JMBG value is null.');
       }
     }else {
