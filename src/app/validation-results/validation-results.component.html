@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Datum rodjenja </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="region">
+    <th mat-header-cell *matHeaderCellDef> Drzava i regija </th>
+    <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="pol">
+    <th mat-header-cell *matHeaderCellDef> Pol </th>
+    <td mat-cell *matCellDef="let element"> {{element.pol}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="rbr">
+    <th mat-header-cell *matHeaderCellDef> Redni broj </th>
+    <td mat-cell *matCellDef="let element"> {{element.rbr}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

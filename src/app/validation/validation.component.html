@@ -1,0 +1,28 @@
+<main class="main">
+  <h1>JMBG validator</h1>
+  <form [formGroup]="jmbgForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input id="ime" formControlName="ime" type="text" name="ime" class="form-control" placeholder="Ime" required=>
+      <div *ngIf="jmbgForm.get('ime')?.hasError('required') && jmbgForm.get('ime')?.touched">
+        Polje ime je obavezno!
+      </div>
+
+      <input id="prezime" formControlName="prezime" type="text" name="prezima" class="form-control" placeholder="Prezime" required>
+      <div *ngIf="jmbgForm.get('prezime')?.hasError('required') && jmbgForm.get('prezime')?.touched">
+        Polje prezime je obavezno!
+      </div>
+
+      <input id="jmbg" formControlName="jmbg" type="text" name="jmbg" class="form-control" placeholder="JMBG" required>
+      <div *ngIf="jmbgForm.get('jmbg')?.hasError('required') && jmbgForm.get('jmbg')?.touched">
+        Polje JMBG je obavezno!
+      </div>
+
+      <div *ngIf="jmbgForm.get('jmbg')?.hasError('jmbgLengthError')">
+        JMBG mora imati 13 cifara.
+      </div>
+    </div>
+    <a>
+    <button mat-button class="submit-button" type="button" [disabled]="jmbgForm.invalid" (click)="onSubmit()">Validacija</button>
+    </a>
+  </form>
+</main>

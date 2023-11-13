@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'jmbg';
+  public jmbg='';
+  gerJmbg()
+  {
+    return this.jmbg;
+  }
+  setJmbg(value: string): void {
+    this.jmbg = value;
+  }
 }
